@@ -41,9 +41,7 @@ The Eco Waste Assistant provides two main AI-powered stages.
 
 ### Stage 1: Waste Analysis
 The user provides one or more waste items.
-For example:
-
-    Plastic bottle, banana peels, old phone
+For example:Plastic bottle, banana peels, old phone
 
 The first AI stage analyzes the items and identifies information such as:
 - Waste item
