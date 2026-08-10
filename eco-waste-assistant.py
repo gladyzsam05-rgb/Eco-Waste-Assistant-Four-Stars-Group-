@@ -1,5 +1,15 @@
 # ECO WASTE ASSISTANT
 
+print("ECO WASTE ASSISTANT")
+print("1.Analyze my waste")
+print("2.Get a waste disposal action plan")
+print("3.Exit")
+
+choice = input("Choose an option: ")
+
+if choice == "1":
+    waste = input("what type of waste do you need help with? ")
+
 # STAGE 1: WASTE ANALYSIS
 
 waste = input("What type of waste do you need help with? ")
