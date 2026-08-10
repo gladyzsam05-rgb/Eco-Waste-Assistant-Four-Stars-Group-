@@ -49,7 +49,7 @@ print("Recycling possibility:", recycling)
 print("Initial action:", action)
 print("Environmental concern:", concern)
 
-elif choice =="2":
+elif choice == "2":
     print("You selected: Get a waste disposal action plan")
 
 # STAGE 2: ACTION PLAN
@@ -78,7 +78,7 @@ else:
     print("2. Check your local waste-management guidelines.")
     print("3. Look for an appropriate reuse or recycling option.")
 
-elif choice =="3":
+elif choice == "3":
     print("Thank you for using eco waste assistant")
 
 else:
