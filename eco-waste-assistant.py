@@ -1,5 +1,7 @@
-print("welcome to Eco-Waste Assistant!")
-print("i can help you  make better waste management decision")
+# ECO WASTE ASSISTANT
+
+# STAGE 1: WASTE ANALYSIS
+
 waste = input("What type of waste do you need help with? ")
 
 if "plastic" in waste:
@@ -30,10 +32,37 @@ else:
     action = "Check local waste-management guidelines."
     concern = "Improper disposal can contribute to environmental pollution."
 
+
+print("\n--- STAGE 1: WASTE ANALYSIS ---")
 print("Category:", category)
 print("Reuse possibility:", reuse)
 print("Recycling possibility:", recycling)
-print("Action:", action)
+print("Initial action:", action)
 print("Environmental concern:", concern)
 
 
+# STAGE 2: ACTION PLAN
+
+print("\n--- STAGE 2: ACTION PLAN ---")
+
+if category == "Plastic waste":
+    print("1. Keep the plastic separate from organic waste.")
+    print("2. Reuse the container if it is clean and safe.")
+    print("3. Check whether your local facility accepts this type of plastic.")
+    print("4. Reduce the use of single-use plastic.")
+
+elif category == "Organic waste":
+    print("1. Separate the organic waste from other waste.")
+    print("2. Compost it where possible.")
+    print("3. Avoid mixing it with plastic or electronic waste.")
+
+elif category == "E-waste":
+    print("1. Keep the electronic item separate from normal waste.")
+    print("2. Repair or reuse it if possible.")
+    print("3. Take it to an appropriate e-waste collection point.")
+    print("4. Do not dispose of electronic waste with ordinary household waste.")
+
+else:
+    print("1. Separate the waste from other materials.")
+    print("2. Check your local waste-management guidelines.")
+    print("3. Look for an appropriate reuse or recycling option.")
