@@ -8,27 +8,26 @@ print("3.Exit")
 choice = input("Choose an option: ")
 
 if choice == "1":
+    print("You selected: Analyze my waste") 
     waste = input("what type of waste do you need help with? ")
 
 # STAGE 1: WASTE ANALYSIS
 
-waste = input("What type of waste do you need help with? ")
-
-if "plastic" in waste:
+if "plastic bottle" in waste:
     category = "Plastic waste"
     reuse = "Yes, if the container is clean and safe to reuse."
     recycling = "Yes, depending on the type of plastic and local facilities."
     action = "Check if it can be recycled."
     concern = "Plastic can contribute to pollution if it is not disposed of properly."
 
-elif "banana" in waste:
+elif "banana peel" in waste:
     category = "Organic waste"
     reuse = "No, but it can be composted."
     recycling = "No, composting is more suitable."
     action = "Consider composting it."
     concern = "Organic waste can cause environmental problems if poorly managed."
 
-elif "phone" in waste:
+elif "old phone" in waste:
     category = "E-waste"
     reuse = "Yes, if it is still working or can be repaired."
     recycling = "Yes, through an appropriate e-waste facility."
@@ -50,6 +49,8 @@ print("Recycling possibility:", recycling)
 print("Initial action:", action)
 print("Environmental concern:", concern)
 
+elif choice =="2":
+    print("You selected: Get a waste disposal action plan")
 
 # STAGE 2: ACTION PLAN
 
@@ -76,3 +77,9 @@ else:
     print("1. Separate the waste from other materials.")
     print("2. Check your local waste-management guidelines.")
     print("3. Look for an appropriate reuse or recycling option.")
+
+elif choice =="3":
+    print("Thank you for using eco waste assistant")
+
+else:
+    print("Invalid option. Please choose 1, 2 or 3.")
