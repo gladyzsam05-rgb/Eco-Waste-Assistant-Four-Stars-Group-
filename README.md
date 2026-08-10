@@ -1,4 +1,4 @@
-#GROUP NAME
+#GROUP NAME FOURSTARS
 ##Eco-Waste-Assistant-Four-Stars-Group-
 
 #PROJECT DESCRIPTION
@@ -88,38 +88,36 @@ The basic process is:
 
     User
       |
-      v
+      
     Python Menu
       |
-      v
+      
     User enters waste
       |
-      v
+      
     AI Call 1
     Waste Analysis
       |
-      v
+      
     JSON Result
       |
-      v
+      
     AI Call 2
     Action Plan
       |
-      v
+      
     Display Result
       |
-      v
+      
     Save Output to File
 
 The second AI call uses the result produced by the first AI call.
 
 ## Menu
 The tool will provide a menu such as:
-
-    ===================================
-           ECO WASTE ASSISTANT
-    ===================================
-
+ 
+       ECO WASTE ASSISTANT
+    
     1. Analyze My Waste
     2. Create Waste Reduction Plan
     3. Exit
@@ -130,27 +128,27 @@ The tool will provide a menu such as:
 
 ### User Input
 
-    Plastic bottle, banana peels, old phone
+    Plastic bottle , banana peels , old phone
 
 ### Stage 1: Analysis
 The AI identifies the waste items and classifies them.
 Example:
 
-    Plastic bottle -> Plastic/Recyclable
-    Banana peels -> Organic waste
-    Old phone -> Electronic waste
+    Plastic bottle : Plastic/Recyclable
+    Banana peels : Organic waste
+    Old phone : Electronic waste
 
 ### Stage 2: Action Plan
 The AI then provides practical guidance for each item.
 For example:
 
-    Plastic bottle:
+    Plastic bottle;
     Separate and prepare it for appropriate recycling.
 
-    Banana peels:
+    Banana peels;
     Separate them from general waste and consider composting.
 
-    Old phone:
+    Old phone;
     Keep it separate from ordinary household waste and use an
     appropriate electronic-waste collection option.
 
@@ -164,12 +162,12 @@ For example:
 
 ## Project Structure
 
-    Eco-Waste-Assistant-Four-Stars-Group/
-    |
-    ├── eco_waste_assistant.py
-    ├── README.md
-    ├── .gitignore
-    └── .env
+    Eco-Waste-Assistant-Four-Stars-Group
+    
+    * eco_waste_assistant.py
+    *README.md
+    *.git ignore
+    *.env
 
 The .env file is used locally to store the API key and must not be
 committed to GitHub.
@@ -179,8 +177,7 @@ The project will be run using Python from the command line or an IDE
 such as VS Code.
 
 After the Python environment and required libraries have been installed,
-the program can be started with:
-
+the program can be started with;
     python eco_waste_assistant.py
 
 ## API Key Setup
