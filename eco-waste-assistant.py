@@ -1,83 +1,202 @@
+import os
+import json
+from dotenv import load_dotenv
+from google import genai
+
+# Load API key from .env
+load_dotenv()
+
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
+
+
 # ECO WASTE ASSISTANT
 
 print("ECO WASTE ASSISTANT")
-print("1.Analyze my waste")
-print("2.Get a waste disposal action plan")
-print("3.Exit")
+print("1. Analyze My Waste")
+print("2. Get a Waste Disposal Action Plan")
+print("3. Exit")
 
 choice = input("Choose an option: ")
-category = "Other waste"
+
+
+# STAGE 1: WASTE ANALYSIS
 
 if choice == "1":
-    print("You selected: Analyze my waste")
-    waste = input("what type of waste do you need help with? ")
 
-    # STAGE 1: WASTE ANALYSIS
-    if "plastic bottle" in waste:
-        category = "Plastic waste"
-        reuse = "Yes, if the container is clean and safe to reuse."
-        recycling = "Yes, depending on the type of plastic and local facilities."
-        action = "Check if it can be recycled."
-        concern = "Plastic can contribute to pollution if it is not disposed of properly."
+    print("You selected: Analyze My Waste")
 
-    elif "banana peel" in waste:
-        category = "Organic waste"
-        reuse = "No, but it can be composted."
-        recycling = "No, composting is more suitable."
-        action = "Consider composting it."
-        concern = "Organic waste can cause environmental problems if poorly managed."
+    waste = input(
+        "What type of waste do you need help with? "
+    )
+    if not waste.strip():
+        print("Please enter at least one waste item.")
+        exit()
 
-    elif "old phone" in waste:
-        category = "E-waste"
-        reuse = "Yes, if it is still working or can be repaired."
-        recycling = "Yes, through an appropriate e-waste facility."
-        action = "Take it to an appropriate e-waste collection point."
-        concern = "E-waste can contain materials that should not be released into the environment."
+    # R-T-C-C-O PROMPT - STAGE 1
 
-    else:
-        category = "Other waste"
-        reuse = "Unknown."
-        recycling = "Check local recycling options."
-        action = "Check local waste-management guidelines."
-        concern = "Improper disposal can contribute to environmental pollution."
+    prompt = f"""
+ROLE:
+You are an AI waste-management assistant.
+
+TASK:
+Analyze and classify each waste item provided by the user.
+
+CONTENT:
+For each waste item, identify:
+- waste_item
+- waste_category
+- reuse_possibility
+- recycling_possibility
+- environmental_concern
+
+CONSTRAINTS:
+- Analyze each waste item separately.
+- Do not combine different waste items.
+- Give clear, simple and practical answers.
+- Do not invent specific local recycling facilities.
+- Return only valid JSON.
+- Use exactly the fields specified in the output format.
+
+OUTPUT:
+Return a JSON object containing a "waste_items" list.
+
+Each waste item must contain exactly these fields:
+- waste_item
+- waste_category
+- reuse_possibility
+- recycling_possibility
+- environmental_concern
+
+USER INPUT:
+{waste}
+"""
+
+    # AI CALL 1
+
+        # AI CALL 1
+
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.6-flash",
+            contents=prompt,
+            config={
+                "response_mime_type": "application/json"
+            }
+        )
+
+    except Exception as e:
+        print("\nSorry, the AI service could not process your request.")
+        print("Error:", e)
+        exit()
+
+    # Convert Stage 1 JSON into Python data
+
+    analysis = json.loads(response.text)
 
     print("\n--- STAGE 1: WASTE ANALYSIS ---")
-    print("Category:", category)
-    print("Reuse possibility:", reuse)
-    print("Recycling possibility:", recycling)
-    print("Initial action:", action)
-    print("Environmental concern:", concern)
 
-elif choice == "2":
-    print("You selected: Get a waste disposal action plan")
+    for item in analysis["waste_items"]:
 
-    # STAGE 2: ACTION PLAN
+        print("\nWaste item:", item["waste_item"])
+        print("Waste category:", item["waste_category"])
+        print(
+            "Reuse possibility:",
+            item["reuse_possibility"]
+        )
+        print(
+            "Recycling possibility:",
+            item["recycling_possibility"]
+        )
+        print(
+            "Environmental concern:",
+            item["environmental_concern"]
+        )
+
+# STAGE 2: ACTION PLAN
+
+    action_prompt = f"""
+ROLE:
+You are an AI waste-management action planner.
+
+TASK:
+Create a practical action plan based on the Stage 1 waste analysis.
+
+CONTEXT:
+Here is the result from Stage 1:
+
+{json.dumps(analysis, indent=2)}
+
+For each waste item, provide:
+- separation
+- reuse
+- recycling
+- handling
+- waste_reduction
+
+CONSTRAINTS:
+- Use the Stage 1 analysis provided above.
+- Analyze each waste item separately.
+- Give clear, simple and practical recommendations.
+- Do not invent specific local recycling facilities.
+- Do not change the waste classifications from Stage 1.
+- Return only valid JSON.
+
+OUTPUT:
+Return a JSON object containing an "action_plans" list.
+
+Each action plan must contain exactly these fields:
+- waste_item
+- separation
+- reuse
+- recycling
+- handling
+- waste_reduction
+"""
+
+        # SECOND GEMINI API CALL
+
+    try:
+        action_response = client.models.generate_content(
+            model="gemini-3.6-flash",
+            contents=action_prompt,
+            config={
+                "response_mime_type": "application/json"
+            }
+        )
+
+    except Exception as e:
+        print("\nSorry, the AI service could not create the action plan.")
+        print("Please try again later.")
+        print("Error:", e)
+        exit()
+
+    # Convert Gemini's JSON response into Python data
+
+    action_plan = json.loads(action_response.text)
+
+    # Display Stage 2
+
     print("\n--- STAGE 2: ACTION PLAN ---")
 
-    if category == "Plastic waste":
-        print("1. Keep the plastic separate from organic waste.")
-        print("2. Reuse the container if it is clean and safe.")
-        print("3. Check whether your local facility accepts this type of plastic.")
-        print("4. Reduce the use of single-use plastic.")
+    for plan in action_plan["action_plans"]:
+        print("\nWaste item:", plan["waste_item"])
+        print("Separation:", plan["separation"])
+        print("Reuse:", plan["reuse"])
+        print("Recycling:", plan["recycling"])
+        print("Handling:", plan["handling"])
+        print("Waste reduction:", plan["waste_reduction"])
 
-    elif category == "Organic waste":
-        print("1. Separate the organic waste from other waste.")
-        print("2. Compost it where possible.")
-        print("3. Avoid mixing it with plastic or electronic waste.")
+# SAVE FINAL RESULT
 
-    elif category == "E-waste":
-        print("1. Keep the electronic item separate from normal waste.")
-        print("2. Repair or reuse it if possible.")
-        print("3. Take it to an appropriate e-waste collection point.")
-        print("4. Do not dispose of electronic waste with ordinary household waste.")
+    final_result = {
+        "stage_1_waste_analysis": analysis,
+        "stage_2_action_plan": action_plan
+    }
 
-    else:
-        print("1. Separate the waste from other materials.")
-        print("2. Check your local waste-management guidelines.")
-        print("3. Look for an appropriate reuse or recycling option.")
+    with open("eco_waste_result.json", "w", encoding="utf-8") as file:
+        json.dump(final_result, file, indent=4)
 
-elif choice == "3":
-    print("Thank you for using eco waste assistant")
-
-else:
-    print("Invalid option. Please choose 1, 2 or 3.")
+    print("\nFinal result saved to eco_waste_result.json")
+   
