@@ -75,13 +75,20 @@ USER INPUT:
 
     # AI CALL 1
 
-    response = client.models.generate_content(
-        model="gemini-3.6-flash",
-        contents=prompt,
-        config={
-            "response_mime_type": "application/json"
-        }
-    )
+
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.6-flash",
+            contents=prompt,
+            config={
+                "response_mime_type": "application/json"
+            }
+        )
+
+    except Exception as e:
+        print("\nSorry, the AI service could not process your request.")
+        print("Error:", e)
+        exit()
 
     # Convert Stage 1 JSON into Python data
 
@@ -147,15 +154,22 @@ Each action plan must contain exactly these fields:
 - waste_reduction
 """
 
-    # SECOND GEMINI API CALL
+        # SECOND GEMINI API CALL
 
-    action_response = client.models.generate_content(
-        model="gemini-3.6-flash",
-        contents=action_prompt,
-        config={
-            "response_mime_type": "application/json"
-        }
-    )
+    try:
+        action_response = client.models.generate_content(
+            model="gemini-3.6-flash",
+            contents=action_prompt,
+            config={
+                "response_mime_type": "application/json"
+            }
+        )
+
+    except Exception as e:
+        print("\nSorry, the AI service could not create the action plan.")
+        print("Please try again later.")
+        print("Error:", e)
+        exit()
 
     # Convert Gemini's JSON response into Python data
 
@@ -184,4 +198,4 @@ Each action plan must contain exactly these fields:
         json.dump(final_result, file, indent=4)
 
     print("\nFinal result saved to eco_waste_result.json")
-    
+   
