@@ -1,0 +1,55 @@
+{
+    "stage_1_waste_analysis": {
+        "waste_items": [
+            {
+                "waste_item": "Plastic bottles",
+                "waste_category": "Plastic / Recyclable Waste",
+                "reuse_possibility": "Can be washed and refilled, converted into plant pots, or used for DIY home projects.",
+                "recycling_possibility": "High. Widely accepted by most curbside recycling programs.",
+                "environmental_concern": "Takes hundreds of years to break down and fragments into microplastics that harm ecosystems."
+            },
+            {
+                "waste_item": "Old phones",
+                "waste_category": "Electronic Waste (E-waste)",
+                "reuse_possibility": "Can be resold, donated, or repurposed as an offline camera, media player, or smart home controller.",
+                "recycling_possibility": "High via specialized e-waste recycling collection points or retailer trade-in programs.",
+                "environmental_concern": "Contains toxic heavy metals such as lead, mercury, and cadmium that can leach into soil and groundwater if landfilled."
+            },
+            {
+                "waste_item": "Banana peels",
+                "waste_category": "Organic Waste / Food Waste",
+                "reuse_possibility": "Can be used directly as garden fertilizer, plant feed, or added to home compost bins.",
+                "recycling_possibility": "High via municipal organic waste collection (green bins) or backyard composting.",
+                "environmental_concern": "Releases methane, a potent greenhouse gas, if buried anaerobically in standard landfills."
+            }
+        ]
+    },
+    "stage_2_action_plan": {
+        "action_plans": [
+            {
+                "waste_item": "Plastic bottles",
+                "separation": "Rinse out any liquids and crush the bottle. Separate from non-recyclable trash and place in the plastics sorting bin.",
+                "reuse": "Wash thoroughly and use as plant pots, seedling starters, or DIY storage containers for small items.",
+                "recycling": "Place in curbside recycling bins or drop off at local plastic recycling collection points.",
+                "handling": "Ensure the bottle is clean and dry to prevent contamination of other recyclable materials. Reattach the cap if local guidelines permit.",
+                "waste_reduction": "Switch to a durable, reusable water bottle or flask to minimize the purchase of single-use plastic bottles."
+            },
+            {
+                "waste_item": "Old phones",
+                "separation": "Keep isolated from standard household trash and standard recycling bins to prevent hazardous leaching and fire risks.",
+                "reuse": "Perform a factory reset to wipe personal data, then donate, sell, or repurpose the phone as a dedicated media player, dashcam, or smart home controller.",
+                "recycling": "Drop off at specialized e-waste collection centers, certified electronics recycling points, or participate in retailer trade-in programs.",
+                "handling": "Handle with care to prevent battery damage. Keep in a cool, dry place prior to disposal and protect the battery terminals if removed.",
+                "waste_reduction": "Extend the lifecycle of existing phones through protective cases, battery replacements, and choosing repair over replacement."
+            },
+            {
+                "waste_item": "Banana peels",
+                "separation": "Collect separately from inorganic waste, plastics, and non-compostable packaging immediately after food prep or consumption.",
+                "reuse": "Steep in water to make a nutrient-rich potassium tea for house plants, or chop and mix directly into garden soil.",
+                "recycling": "Dispose of in municipal organic/green waste bins or process in home backyard compost bins or worm farms.",
+                "handling": "Store in a sealed kitchen caddy or freeze peels until collection day to prevent fruit flies and bad odors.",
+                "waste_reduction": "Purchase bananas in realistic quantities to avoid food waste, and use ripe bananas in cooking or freezing before spoilage occurs."
+            }
+        ]
+    }
+}
